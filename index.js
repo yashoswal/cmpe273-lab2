@@ -13,7 +13,8 @@ app.use(connect.query()); // Parse query string into `request.query`
 
 
 app.use('/', main);
-
+var name = "n"
+var email = "m"
 
 function main(request, response, next) {
 
@@ -73,7 +74,8 @@ function post(request, response) {
         // TODO: read 'name and email from the request.body'
 
 	var newSessionId = login.login(request.body.name, request.body.email);
-
+	name = request.body.name;
+	email = request.body.email;
 	// TODO: set new session id to the 'session_id' cookie in the response
 
 	response.setHeader('Set-Cookie', 'session_id=' + newSessionId);
@@ -119,7 +121,7 @@ function put(request, response) {
 
 	// TODO: refresh session id; similar to the post() function
 
-	var reNewed = login.login(request.body.name, request.body.email);
+	var reNewed = login.login(name, email);
 
 	response.end("Re-freshed session id\n"+reNewed);
 
